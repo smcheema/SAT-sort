@@ -10,8 +10,8 @@ import java.util.Arrays;
 final public class SATSort {
 
     protected int[] sortIt(int[] arrayToSort) {
-        // load native Java jars, OR-Tools have a set-up process to link the Java abstraction
-        // and the underlying C++
+        // load native Java jars, OR-Tools have a set-up process to link the Java abstraction 
+        // and the underlying C++ [https://developers.google.com/optimization/install/java]
         Loader.loadNativeLibraries();
         final CpModel model = new CpModel();
         final long[] domain = Arrays.stream(arrayToSort)
