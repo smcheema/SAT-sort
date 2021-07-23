@@ -29,9 +29,13 @@ final public class SATSort {
         // this is really neat and is where the magic happens. One way of thinking about sorted arrays is :
         // I have indices, and elements. Maximize for me the scalar product of my indices and elements.
         // i.e, put my largest elements at my largest indices.
-        // Small proof by contradiction : suppose the above is false, and our array is ordered, I can take any two
-        // elements on indices indexOne and indexTwo, where indexTwo > indexOne and arr[indexTwo] < arr[indexOne]
-        // I can swap them, and obtain a new maximal scalar product. Pretty neat way of thinking about sorting.
+        // Small proof by contradiction : suppose the above is false, and our array is ordered, this
+        // implies that for all i in the set {0..arr.len - 1 - 1}, arr[i + 1] >= arr[i] AND there exist
+        // at-least one pair of numbers that can be swapped to achieve a higher sum. Since indices are non-negative
+        // entities, the only way it's possible for swap(arr[i], arr[j]) to yield a higher scalar product is iff
+        // the element at the lower index was larger than the element at the higher index, thus contradicting our
+        // ordering assumption.
+        // Pretty neat way of thinking about sorting.
         model.maximize(LinearExpr.scalProd(indices, arrayToSort));
         CpSolver solver = new CpSolver();
         CpSolverStatus status = solver.solve(model);
